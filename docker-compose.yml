@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  whisper-server:
+    build: .
+    volumes:
+      - ./whisper-server:/usr/src/whisper-server
+      - cargo-git:/usr/local/cargo/git
+      - cargo-registry:/usr/local/cargo/registry
+    command: ["cargo", "watch", "-x", "run"]
+    ports:
+      - 8000:8000
+
+volumes:
+  cargo-git:
+  cargo-registry:
